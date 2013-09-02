@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOrderingTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOrderingLabel_id}"/>
+                    <h:outputText value="#{orderingController.selected.id}" title="#{bundle.ViewOrderingTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewOrderingLabel_placedAt}"/>
+                    <h:outputText value="#{orderingController.selected.placedAt}" title="#{bundle.ViewOrderingTitle_placedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewOrderingLabel_customerid}"/>
+                    <h:outputText value="#{orderingController.selected.customerid}" title="#{bundle.ViewOrderingTitle_customerid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{orderingController.destroyAndView}" value="#{bundle.ViewOrderingDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOrderingEditLink}"/>
+                <br />
+                <h:commandLink action="#{orderingController.prepareCreate}" value="#{bundle.ViewOrderingCreateLink}" />
+                <br />
+                <h:commandLink action="#{orderingController.prepareList}" value="#{bundle.ViewOrderingShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOrderingIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
